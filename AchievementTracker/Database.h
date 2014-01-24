@@ -12,6 +12,8 @@ class Game
   int playerCount;
 
 public:
+  Game() {};
+
   Game(unsigned int _gId, string _gName) 
     : gameId(_gId), gameName(_gName), playerCount(0) {};
 };
@@ -22,6 +24,8 @@ class Player
   string playerName;
 
 public:
+  Player() {};
+
   Player(unsigned int _pId, string _pName) 
     : playerId(_pId), playerName(_pName) {};
 };
