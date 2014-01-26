@@ -21,7 +21,9 @@ void Database::addGame(unsigned int _gId, string _gName)
 }
 void Database::addAchievement(unsigned int _gId, unsigned int _aId, string _aName, unsigned int _aPts)
 {
+  gameMap[_gId].addAchievement(_aId, _aName, _aPts);
   cout << "AddAchievement " << _gId << " " << _aId << " " << _aName << " " << _aPts << " - DONE." << endl;
+  //gameMap[_gId].printAllAchs();
 }
 void Database::plays(unsigned int _pId, unsigned int _gId, string _pIgn)
 {
