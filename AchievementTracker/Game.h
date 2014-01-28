@@ -7,22 +7,19 @@
 
 using namespace std;
 
-struct classComp {
-  bool operator() (const int& lhs, const int& rhs) const
-  {
-    return lhs<rhs;
-  }
-};
+class Game;
+typedef map<int, Game>::iterator game_Itr;
+
 
 class Game
 {
   unsigned int gameId;
   string gameName;
-  int playerCount;
-
-  map<int, Achievement, classComp> achMap;
+  unsigned int playerCount;
 
 public:
+  map<int, Achievement> achMap;
+
   Game() {};
 
   Game(unsigned int _gId, string _gName)
@@ -33,14 +30,39 @@ public:
     achMap[_aId] = Achievement(gameId, _aId, _aName, _aPts);
   }
 
+  void incrementPlayerCount()
+  {
+    playerCount++;
+  }
+
   string getGameName()
   {
     return gameName;
   }
 
+  unsigned int getGameId()
+  {
+    return gameId;
+  }
+
+  unsigned int getNumAchs()
+  {
+    return achMap.size();
+  }
+
+  unsigned int getPlayerCount()
+  {
+    return playerCount;
+  }
+
+  ach_Itr getAchItr(unsigned int _aId)
+  {
+    return achMap.find(_aId);
+  }
+
   void printAllAchs()
   {
-    map<int, Achievement, classComp>::iterator it;
+    ach_Itr it;
     for (it = achMap.begin(); it != achMap.end(); it++)
     {
       cout << "achID: " << it->first
