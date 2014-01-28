@@ -94,8 +94,90 @@ void Database::friendsWhoPlay(unsigned int _pId, unsigned int _gId)
 
 void Database::comparePlayers(unsigned int _pId1, unsigned int _pId2, unsigned int _gId)
 {
+  Player p1 = playerMap[_pId1];
+  Player p2 = playerMap[_pId2];
 
+  Game g = gameMap[_gId];
+
+  cout << "Game: " << g.getGameName() 
+    << endl << endl;
+
+  cout << left
+    << setw(WIDTH_LONG_TITLE) << " "
+    << setw(WIDTH_COMPARE) << p1.getPlayerName()
+    << setw(WIDTH_COMPARE) << p2.getPlayerName();
   cout << endl;
+  cout << setw(WIDTH_LONG_TITLE) << " "
+    << "-----------------------------------------------------------";
+  cout << endl;
+
+  int count = 0;
+  for (int i = 0; i < p1.gameEntries.size(); i++)
+  {
+    // match gId for player 1
+    Player::gameEntry p1_g_entry = p1.gameEntries[i];
+    if (p1.gameEntries[i].getGameId() == _gId)
+    {
+      for (int j = 0; j < p2.gameEntries.size(); j++)
+      {
+        // match gId for player 2
+        Player::gameEntry p2_g_entry = p2.gameEntries[j];
+        if (p2_g_entry.getGameId() == _gId)
+        {
+          for (int a1 = 0; a1 < p1_g_entry.achVec.size(); a1++)
+          {
+            Achievement ach1 = p1_g_entry.achVec[a1]->second;
+            for (int a2 = 0; a2 < p2_g_entry.achVec.size(); a2++)
+            {
+
+              Achievement ach2 = p2_g_entry.achVec[a2]->second;
+              if (ach1.getAchId() == ach2.getAchId())
+              {
+                count++;
+
+
+                // print shared achievements
+                string achName = to_string(count) + ". " + ach1.getAchName();
+
+                if (count == 1)
+                {
+                  cout << setw(WIDTH_LONG_TITLE) << "Shared Achvmnts:";
+                }
+                else
+                {
+                  cout << setw(WIDTH_LONG_TITLE) << " ";
+                }
+
+                cout << left
+                  << setw(WIDTH_ACHIEVEMENT_NAME) << achName
+                  << endl;
+
+                break;
+              }
+            }
+          }
+
+          cout << endl << endl;
+
+          // print shared achievements
+          string p1_pts = to_string(p1_g_entry.getEntryPts()) + " pts";
+          string p2_pts = to_string(p2_g_entry.getEntryPts()) + " pts";
+
+          cout << setw(WIDTH_LONG_TITLE) << "Game Score:";
+
+          cout << left
+            << setw(WIDTH_COMPARE) << p1_pts
+            << setw(WIDTH_COMPARE) << p2_pts;
+
+          break;
+        }
+      }
+
+      break;
+    }
+  }
+
+  cout << endl << endl;
   cout << "ComparePlayers " << _pId1 << " " << _pId2 << " " << _gId << " - DONE." << endl;
   cout << endl;
 }
@@ -350,7 +432,6 @@ void Database::summarizeAchievement(unsigned int _gId, unsigned int _aId)
             break;
           }
         }
-
         break;
       }
     }
@@ -408,9 +489,13 @@ void Database::achievementRanking()
   cout << endl;
 }
 
-void Database::processInput(string input)
+void Database::processInput()
 {
-  //cout << ">";
+  cout << ">>> ";
+
+  string input;
+
+  getline(cin, input);
 
   smatch m;
 
@@ -513,6 +598,10 @@ void Database::processInput(string input)
     else if (op.compare("AchievementRanking") == 0)
     {
       achievementRanking();
+    }
+    else
+    {
+      cout << "Invalid input. Try again." << endl;
     }
   }
 }

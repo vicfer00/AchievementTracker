@@ -17,8 +17,10 @@ using namespace std;
 #define WIDTH_IGN 15
 #define WIDTH_PLAYER_NAME 20
 #define WIDTH_TITLE 10
+#define WIDTH_LONG_TITLE 20
 #define WIDTH_DEFAULT 20
 #define WIDTH_TITLE_ACHIEVEMENT 15
+#define WIDTH_COMPARE 28
 #define WIDTH_MAX 80
 
 
@@ -47,5 +49,5 @@ public:
   void summarizeAchievement(unsigned int _gId, unsigned int _aId);
   void achievementRanking();
 
-  void processInput(string input);
+  void processInput();
 };

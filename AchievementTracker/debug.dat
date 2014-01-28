@@ -1,8 +1,0 @@
-AddPlayer 123 "Cuong Ngo"
-AddGame 900 "Call of Duty"
-AddAchievement 900 565 "Masterdon" 80
-AddAchievement 900 99999 "Killed 10 zombies" 15
-Plays 123 900 "|KingKong|"
-AddPlayer 897 "Brandon Nguyen"
-Plays 897 900 "Kill2Nguyen"
-AddFriends 123 897

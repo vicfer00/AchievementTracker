@@ -19,20 +19,10 @@ void processInput();
 int main(int argc, char* argv[])
 {
   Database db;
-  char in[MAX_CHAR];
-  ifstream ifs;
-  ifs.open("debug.dat");
-  cout << "Successfully opened data file." << endl;
-  while (ifs.good() && !ifs.eof()) {
-    ifs.getline(in, MAX_CHAR);
-    db.processInput(string(in));
+  while(true)
+  {
+    db.processInput();
   }
-
-  Sleep(100000);
-  //while(true)
-  //{
-   // db.processInput();
-  //}
 
 	return 0;
 }
