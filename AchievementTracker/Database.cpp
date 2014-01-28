@@ -71,9 +71,11 @@ void Database::friendsWhoPlay(unsigned int _pId, unsigned int _gId)
   cout << endl;
 
   bool atLeastOne = false;
+  // loop through each friend
   for (int i = 0; i < p.friends.size(); i++)
   {
     Player friendPlayer = p.friends[i]->second;
+    // check for gId match
     if (friendPlayer.plays(_gId))
     {
       if (!atLeastOne)
@@ -200,6 +202,7 @@ void Database::summarizePlayer(unsigned int _pId)
     << "--------------------------------------------------------------------";
   cout << endl;
 
+  // loop through each game the player plays
   for (int i = 0; i < p.gameEntries.size(); i++)
   {
     Player::gameEntry g_entry = p.gameEntries[i];
@@ -235,6 +238,8 @@ void Database::summarizePlayer(unsigned int _pId)
   cout << setw(WIDTH_TITLE) << " " 
     << "--------------------------------------------------------------------";
   cout << endl;
+
+  // loop through each of the player's friends
   for (int i = 0; i < p.friends.size(); i++)
   {
     Player f = p.friends[i]->second;
@@ -463,6 +468,8 @@ void Database::achievementRanking()
     << "---------------------------------------------------------------------";
   cout << endl;
 
+
+  // print sorted players
   for (int i = 0; i < v.size(); i++)
   {
     string playerName = to_string(i + 1) + ". " + v[i].first;

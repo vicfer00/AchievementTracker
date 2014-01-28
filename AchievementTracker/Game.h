@@ -59,19 +59,6 @@ public:
   {
     return achMap.find(_aId);
   }
-
-  void printAllAchs()
-  {
-    ach_Itr it;
-    for (it = achMap.begin(); it != achMap.end(); it++)
-    {
-      cout << "achID: " << it->first
-        << ", gameId: " << it->second.getGameId()
-        << ", achPts: " << it->second.getAchPts()
-        << endl;
-
-    }
-  }
 };
 
 #endif

@@ -9,6 +9,8 @@
 
 using namespace std;
 
+
+// formatting variables
 #define MAX_CHAR 4096
 #define WIDTH_NUMBER 15
 #define WIDTH_GAME_NAME 20
